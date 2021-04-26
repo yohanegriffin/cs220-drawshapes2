@@ -61,6 +61,12 @@ public class Rectangle extends AbstractShape
 		this.width = (int)(this.width * factor);
 		this.height = (int)(this.height * factor);
 	}
-    
+
+	@Override
+	public void move(int dx, int dy) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

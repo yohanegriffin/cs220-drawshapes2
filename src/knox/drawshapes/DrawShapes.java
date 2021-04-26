@@ -2,6 +2,7 @@ package knox.drawshapes;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,7 +29,8 @@ public class DrawShapes extends JFrame
     private enum ShapeType {
         SQUARE,
         CIRCLE,
-        RECTANGLE
+        RECTANGLE,
+        POLYGON,
     }
     
     private DrawShapesPanel shapePanel;
@@ -83,12 +85,9 @@ public class DrawShapes extends JFrame
                         scene.addShape(new Circle(color,
                                 e.getPoint(),
                                 100));
-                    } else if (shapeType == ShapeType.RECTANGLE) {
-                        scene.addShape(new Rectangle(
-                                e.getPoint(),
-                                100, 
-                                200,
-                                color));
+//                    } else if (shapeType == ShapeType.HEXAGON){
+//                        scene.addShape(new Circle(color,
+//                                e.getPoint(),
                     }
                     
                 } else if (e.getButton()==MouseEvent.BUTTON2) {
@@ -227,6 +226,7 @@ public class DrawShapes extends JFrame
         // color menu
         JMenu colorMenu = new JMenu("Color");
         menuBar.add(colorMenu);
+        menuBar.setBackground(color.CYAN);
 
         
         // red color
@@ -237,8 +237,12 @@ public class DrawShapes extends JFrame
                 System.out.println(text);
                 // change the color instance variable to red
                 color = Color.RED;
+                
 			}
 		});
+        
+        
+        
         
         // green color
         addToMenu(colorMenu, "Green", new ActionListener() {
@@ -246,8 +250,20 @@ public class DrawShapes extends JFrame
 			public void actionPerformed(ActionEvent e) {
 				String text=e.getActionCommand();
                 System.out.println(text);
-                // change the color instance variable to red
+                // change the color instance variable to green
                 color = Color.GREEN;
+			}
+        
+		});
+        
+        // black color
+        addToMenu(colorMenu, "Black", new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String text=e.getActionCommand();
+                System.out.println(text);
+                // change the color instance variable to red
+                color = Color.BLACK;
 			}
 		});
         
@@ -260,10 +276,51 @@ public class DrawShapes extends JFrame
                 color = Color.BLUE;
             }
         });
+        // background menu
+        JMenu backgroundMenu = new JMenu("Background");
+        menuBar.add(backgroundMenu);
+        
+        
+//        fileMenu.addSeparator();
+//        // edit
+//        JMenuItem itemBackground = new JMenuItem ("Background");
+//        fileMenu.add(itemBackground);
+//        itemExit.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                String text=e.getActionCommand();
+//                System.out.println(text);
+//                System.exit(0);
+//            }
+//        });
+        
+        addToMenu(backgroundMenu, "White", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("White");
+                setBackground(Color.white); 
+            }
+        });
+
+        addToMenu(backgroundMenu, "Black", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Black");
+                setBackground(Color.black); 
+            }
+        });
+        
+        addToMenu(backgroundMenu, "Magenta", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Magenta");
+                setBackground(Color.magenta); 
+            }
+        });
         
         // shape menu
         JMenu shapeMenu = new JMenu("Shape");
         menuBar.add(shapeMenu);
+        
         
         // square
         addToMenu(shapeMenu, "Square", new ActionListener() {
@@ -280,6 +337,19 @@ public class DrawShapes extends JFrame
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Circle");
                 shapeType = ShapeType.CIRCLE;
+            }
+            
+            
+            
+            
+        });
+        
+        // polygon
+        addToMenu(shapeMenu, "Polygon", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Polygon");
+                shapeType = ShapeType.POLYGON;
             }
         });
         
@@ -317,7 +387,8 @@ public class DrawShapes extends JFrame
             }
         });
         
-
+        
+        
         // set the menu bar for this frame
         this.setJMenuBar(menuBar);
     }

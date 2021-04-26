@@ -50,11 +50,16 @@ public abstract class AbstractShape implements IShape {
         return boundingBox.contains(point);
     }
 
-	@Override
-	public void move(int dx, int dy) {
-		this.setAnchorPoint(new Point(this.anchorPoint.x + dx, this.anchorPoint.y + dy));
-		this.boundingBox.move(dx, dy);
-	}
+//	@Override
+//	public void moveleft(int dx, int dy) {
+//		this.setAnchorPoint(new Point(this.anchorPoint.x + dx, this.anchorPoint.y + dy));
+//		this.boundingBox.move(dx, dy);
+//	}
+//	@Override
+//	public void moveright(int dx, int dy) {
+//		this.setAnchorPoint(new Point(this.anchorPoint.x - dx, this.anchorPoint.y - dy));
+//		this.boundingBox.move(dx, dy);
+//	}
 	
 	 /**
      * Returns the bounding box of this shape. The bounding box
